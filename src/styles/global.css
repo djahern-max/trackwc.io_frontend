@@ -1,0 +1,92 @@
+/* TrackWC.io — Design System */
+/* Industrial/utilitarian aesthetic: clear, fast, readable at a glance */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Brand */
+  --navy:       #0f2942;
+  --navy-mid:   #1a3d5c;
+  --navy-light: #2a5278;
+  --accent:     #f97316;
+  --accent-dim: #ea580c;
+
+  /* WC Code Colors (match seed.py) */
+  --code-0042: #16a34a;
+  --code-6217: #dc2626;
+  --code-8227: #d97706;
+  --code-8742: #7c3aed;
+  --code-8810: #0891b2;
+  --code-9402: #1d4ed8;
+
+  /* UI */
+  --bg:         #f4f7fb;
+  --surface:    #ffffff;
+  --border:     #dde4ee;
+  --text:       #0f2942;
+  --text-2:     #4a6080;
+  --text-3:     #8aa0b8;
+  --success:    #16a34a;
+  --danger:     #dc2626;
+  --warning:    #d97706;
+
+  /* Sizing */
+  --radius-sm:  6px;
+  --radius:     12px;
+  --radius-lg:  18px;
+  --shadow-sm:  0 1px 3px rgba(15,41,66,.08);
+  --shadow:     0 4px 16px rgba(15,41,66,.12);
+  --shadow-lg:  0 8px 32px rgba(15,41,66,.16);
+
+  /* Mobile touch targets */
+  --touch-min:  48px;
+
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100dvh;
+  overscroll-behavior: none;
+}
+
+/* Touch-friendly interactive elements */
+button, a, [role="button"] {
+  min-height: var(--touch-min);
+  cursor: pointer;
+}
+
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+/* Utility classes */
+.mono { font-family: 'DM Mono', monospace; }
+.text-2 { color: var(--text-2); }
+.text-sm { font-size: 0.875rem; }
+.text-xs { font-size: 0.75rem; }
+.font-bold { font-weight: 700; }
+.font-medium { font-weight: 500; }

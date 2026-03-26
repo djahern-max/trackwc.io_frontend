@@ -1,0 +1,564 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+/* ── Header ────────────────────────────────────────────────────────────────── */
+.header {
+  background: var(--navy);
+  color: white;
+  padding: 16px 20px 20px;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.backNav {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.6);
+  font-size: 0.875rem;
+  font-weight: 500;
+  min-height: auto;
+  padding: 0;
+}
+
+.logo {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.date {
+  font-size: 0.8125rem;
+  color: rgba(255,255,255,.55);
+  margin-top: 2px;
+}
+
+/* ── Step Indicator ─────────────────────────────────────────────────────────── */
+.steps {
+  display: flex;
+  background: var(--navy-mid);
+  padding: 10px 20px;
+  gap: 0;
+}
+
+.stepPip {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.stepActive {
+  opacity: 1;
+}
+
+.stepDone {
+  opacity: 0.75;
+}
+
+.stepNum {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.15);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepActive .stepNum {
+  background: var(--accent);
+}
+
+.stepDone .stepNum {
+  background: var(--success);
+}
+
+.stepLabel {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.8);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Main ──────────────────────────────────────────────────────────────────── */
+.main {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.section {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 520px;
+  margin: 0 auto;
+  width: 100%;
+  padding-bottom: 100px;
+}
+
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.selectActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.linkBtn {
+  background: none;
+  border: none;
+  color: var(--accent-dim);
+  font-size: 0.875rem;
+  font-weight: 600;
+  min-height: auto;
+  padding: 4px;
+}
+
+.divider {
+  color: var(--text-3);
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: var(--text-2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0;
+  min-height: auto;
+  align-self: flex-start;
+}
+
+/* ── Employee List ──────────────────────────────────────────────────────────── */
+.empList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.empRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-align: left;
+  transition: all 0.12s;
+}
+
+.empRowSelected {
+  border-color: var(--navy);
+  background: color-mix(in srgb, var(--navy) 5%, white);
+}
+
+.checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  transition: all 0.12s;
+}
+
+.checkboxChecked {
+  background: var(--navy);
+  border-color: var(--navy);
+}
+
+.empInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.empName {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.empDefault {
+  font-size: 0.75rem;
+  color: var(--text-3);
+}
+
+/* ── Sticky Bar ─────────────────────────────────────────────────────────────── */
+.stickyBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+  box-shadow: 0 -4px 16px rgba(15,41,66,.08);
+}
+
+.selectedCount {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  font-weight: 500;
+  flex: 1;
+}
+
+/* ── Code List ──────────────────────────────────────────────────────────────── */
+.crewPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.codeList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.codeRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-left: 5px solid var(--col);
+  border-radius: var(--radius-sm);
+  text-align: left;
+  transition: all 0.12s;
+}
+
+.codeRow:active {
+  background: color-mix(in srgb, var(--col) 8%, white);
+}
+
+.codeBadge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--col);
+  background: color-mix(in srgb, var(--col) 12%, transparent);
+  padding: 2px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.codeDesc {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+}
+
+.codeArrow {
+  color: var(--text-3);
+  font-size: 1rem;
+}
+
+/* ── Code Banner ────────────────────────────────────────────────────────────── */
+.codeBanner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  color: white;
+}
+
+.bannerCode {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  background: rgba(255,255,255,.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.bannerDesc {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* ── Job List ──────────────────────────────────────────────────────────────── */
+.jobList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.jobRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 16px;
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-align: left;
+  transition: all 0.12s;
+}
+
+.jobRowSelected {
+  border-color: var(--navy);
+}
+
+.jobName { font-size: 0.9375rem; font-weight: 500; color: var(--text); }
+.jobNum { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-3); }
+
+.skipRow {
+  background: none;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-3);
+  font-size: 0.875rem;
+  padding: 13px 16px;
+  text-align: left;
+}
+
+/* ── Hours ──────────────────────────────────────────────────────────────────── */
+.hoursRow {
+  display: flex;
+  gap: 8px;
+}
+
+.hoursBtn {
+  flex: 1;
+  padding: 12px 0;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.hoursBtnActive {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: white;
+}
+
+.hoursInput {
+  font-family: 'DM Mono', monospace;
+  font-size: 1.125rem;
+  font-weight: 500;
+  padding: 11px 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  width: 100%;
+  color: var(--text);
+  background: white;
+}
+
+.hoursInput:focus { outline: none; border-color: var(--navy); }
+
+/* ── Confirm Box ────────────────────────────────────────────────────────────── */
+.confirmBox {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.confirmTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-3);
+  margin-bottom: 4px;
+}
+
+.confirmRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--text-2);
+}
+
+.confirmRow strong {
+  color: var(--text);
+  font-weight: 600;
+  text-align: right;
+  max-width: 60%;
+}
+
+/* ── Buttons ────────────────────────────────────────────────────────────────── */
+.btnPrimary {
+  padding: 15px;
+  background: var(--navy);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--radius);
+  width: 100%;
+}
+
+.btnPrimary:disabled { opacity: 0.5; }
+
+.btnSecondary {
+  padding: 13px;
+  background: none;
+  border: 2px solid var(--border);
+  color: var(--text-2);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  width: 100%;
+}
+
+/* ── Done ───────────────────────────────────────────────────────────────────── */
+.doneBlock {
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.doneIcon {
+  width: 64px;
+  height: 64px;
+  background: var(--success);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.doneTitle {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.doneSummary {
+  width: 100%;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.doneLine {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.doneCodeBadge {
+  font-family: 'DM Mono', monospace;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 4px;
+}
+
+.doneCodeDesc {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.doneJob {
+  font-size: 0.875rem;
+  color: var(--text-2);
+}
+
+.doneHours {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-top: 4px;
+}
+
+.doneNames {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+}
+
+/* ── Shared ─────────────────────────────────────────────────────────────────── */
+.namePill {
+  background: color-mix(in srgb, var(--navy) 10%, white);
+  color: var(--navy);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 99px;
+}
+
+.namePillMore {
+  background: var(--border);
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 99px;
+}
+
+.error {
+  color: var(--danger);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 10px 14px;
+  background: color-mix(in srgb, var(--danger) 10%, white);
+  border-radius: var(--radius-sm);
+}

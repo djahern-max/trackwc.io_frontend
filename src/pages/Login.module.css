@@ -1,0 +1,223 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Logo ────────────────────────────────────────────────────────────────── */
+.logoBlock {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoMark {
+  width: 48px;
+  height: 48px;
+  background: var(--navy);
+  color: var(--accent);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+}
+
+.logoSub {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  font-weight: 500;
+}
+
+/* ── Toggle ──────────────────────────────────────────────────────────────── */
+.toggle {
+  display: flex;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 3px;
+}
+
+.toggleBtn {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: none;
+  color: var(--text-2);
+  min-height: auto;
+  transition: all 0.15s;
+}
+
+.toggleActive {
+  background: white;
+  color: var(--navy);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── PIN ─────────────────────────────────────────────────────────────────── */
+.pinSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.pinLabel {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.pinDots {
+  display: flex;
+  gap: 16px;
+}
+
+.pinDot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2.5px solid var(--border);
+  transition: all 0.15s ease;
+}
+
+.pinDotFilled {
+  background: var(--navy);
+  border-color: var(--navy);
+  transform: scale(1.1);
+}
+
+.pinDotError {
+  border-color: var(--danger) !important;
+  background: var(--danger) !important;
+  animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* ── Numpad ──────────────────────────────────────────────────────────────── */
+.numpad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.numKey {
+  height: 64px;
+  background: var(--bg);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--navy);
+  transition: all 0.1s ease;
+  min-height: auto;
+}
+
+.numKey:active {
+  background: var(--navy);
+  color: white;
+  transform: scale(0.95);
+}
+
+.numKey:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.numKeyEmpty {
+  background: none;
+  pointer-events: none;
+}
+
+/* ── Email Form ──────────────────────────────────────────────────────────── */
+.emailForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input {
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  background: white;
+  transition: border-color 0.15s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--navy);
+}
+
+.loginBtn {
+  padding: 14px;
+  background: var(--navy);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  margin-top: 4px;
+}
+
+.loginBtn:disabled {
+  opacity: 0.6;
+}
+
+/* ── Error ───────────────────────────────────────────────────────────────── */
+.error {
+  color: var(--danger);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+}
