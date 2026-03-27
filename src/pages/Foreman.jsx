@@ -19,7 +19,7 @@ export default function Foreman() {
   const [codeList, setCodeList] = useState([])
   const [jobList, setJobList] = useState([])
   const [selected, setSelected] = useState(new Set())
-  const [step, setStep] = useState('crew')       // crew | code | job | hours | confirm | done
+  const [step, setStep] = useState('crew')   // crew | code | job | hours | done
   const [chosenCode, setChosenCode] = useState(null)
   const [chosenJob, setChosenJob] = useState(null)
   const [hours, setHours] = useState('8')
@@ -30,7 +30,6 @@ export default function Foreman() {
   useEffect(() => {
     Promise.all([employees.list(), wcCodes.list(), jobs.list()])
       .then(([emps, codes, js]) => {
-        // Only show workers (not foremen/admins)
         setEmpList(emps.filter(e => e.role === 'worker'))
         setCodeList(codes)
         setJobList(js)
@@ -45,13 +44,8 @@ export default function Foreman() {
     })
   }
 
-  function selectAll() {
-    setSelected(new Set(empList.map(e => e.id)))
-  }
-
-  function clearAll() {
-    setSelected(new Set())
-  }
+  function selectAll() { setSelected(new Set(empList.map(e => e.id))) }
+  function clearAll() { setSelected(new Set()) }
 
   async function handleSubmit() {
     setLoading(true)
@@ -83,52 +77,104 @@ export default function Foreman() {
     setResults([])
   }
 
+  function handleLogout() {
+    auth.logout()
+    navigate('/login')
+  }
+
   const selectedEmployees = empList.filter(e => selected.has(e.id))
+  const stepIndex = { crew: 1, code: 2, job: 3, hours: 4, done: 4 }[step]
 
   return (
     <div className={styles.page}>
+
+      {/* ── Header ── */}
       <header className={styles.header}>
         <div className={styles.headerTop}>
-          <button className={styles.backNav} onClick={() => navigate('/dashboard')}>← Dashboard</button>
-          <span className={styles.logo}>TrackWC</span>
+          <button className={styles.backNav} onClick={() => navigate('/dashboard')}>
+            <i className="fi fi-rr-arrow-left" />
+            Dashboard
+          </button>
+          <div className={styles.logoText}>
+            TrackWC<span className={styles.logoAccent}>.io</span>
+          </div>
+          <button className={styles.logoutBtn} onClick={handleLogout}>
+            <i className="fi fi-rr-sign-out-alt" />
+            Sign out
+          </button>
         </div>
-        <h1 className={styles.title}>Crew Assignment</h1>
-        <p className={styles.date}>{formatDate(today)}</p>
+        <div className={styles.headerBottom}>
+          <div>
+            <h1 className={styles.title}>Crew Assignment</h1>
+            <p className={styles.date}>{formatDate(today)}</p>
+          </div>
+          {step !== 'done' && (
+            <div className={styles.crewCountBadge}>
+              <i className="fi fi-rr-users" />
+              {selected.size > 0 ? `${selected.size} selected` : 'No crew yet'}
+            </div>
+          )}
+        </div>
       </header>
 
-      {/* Step indicator */}
-      <div className={styles.steps}>
-        {['Crew', 'Code', 'Job', 'Hours'].map((label, i) => {
-          const stepOrder = ['crew', 'code', 'job', 'hours', 'confirm', 'done']
-          const currentIdx = stepOrder.indexOf(step)
-          const isActive = i === Math.min(currentIdx, 3)
-          const isDone = i < currentIdx && currentIdx < 5
-          return (
-            <div key={label} className={`${styles.stepPip} ${isActive ? styles.stepActive : ''} ${isDone ? styles.stepDone : ''}`}>
-              <span className={styles.stepNum}>{isDone ? '✓' : i + 1}</span>
-              <span className={styles.stepLabel}>{label}</span>
+      {/* ── Step Progress ── */}
+      {step !== 'done' && (
+        <div className={styles.progress}>
+          {['Crew', 'Classification', 'Job Site', 'Hours'].map((label, i) => (
+            <div
+              key={label}
+              className={`${styles.progressStep} ${i + 1 === stepIndex ? styles.progressActive : ''} ${i + 1 < stepIndex ? styles.progressDone : ''}`}
+            >
+              <div className={styles.progressDot}>
+                {i + 1 < stepIndex
+                  ? <i className="fi fi-sr-check" />
+                  : i + 1
+                }
+              </div>
+              <span className={styles.progressLabel}>{label}</span>
             </div>
-          )
-        })}
-      </div>
+          ))}
+        </div>
+      )}
 
+      {/* ── Main ── */}
       <main className={styles.main}>
 
-        {/* DONE */}
+        {/* ── DONE ── */}
         {step === 'done' && (
           <div className={styles.doneBlock}>
-            <div className={styles.doneIcon}>✓</div>
+            <div className={styles.doneIconWrap}>
+              <i className="fi fi-sr-check-circle" />
+            </div>
             <h2 className={styles.doneTitle}>{results.length} employees assigned</h2>
-            <div className={styles.doneSummary}>
-              <div className={styles.doneLine}>
-                <span className={styles.doneCodeBadge} style={{ background: chosenCode?.color }}>
+            <p className={styles.doneSub}>Entries saved for today</p>
+
+            <div className={styles.doneSummary} style={{ borderColor: chosenCode?.color }}>
+              <div className={styles.doneSummaryRow}>
+                <span className={styles.doneSummaryLabel}>Classification</span>
+                <span className={styles.doneCodePill} style={{ background: chosenCode?.color }}>
                   {chosenCode?.code}
                 </span>
-                <span className={styles.doneCodeDesc}>{chosenCode?.description}</span>
               </div>
-              {chosenJob && <p className={styles.doneJob}>📍 {chosenJob.name}</p>}
-              <p className={styles.doneHours}>{hours} hours each</p>
+              <div className={styles.doneSummaryRow}>
+                <span className={styles.doneSummaryLabel}>Description</span>
+                <span className={styles.doneSummaryVal}>{chosenCode?.description}</span>
+              </div>
+              {chosenJob && (
+                <div className={styles.doneSummaryRow}>
+                  <span className={styles.doneSummaryLabel}>Job site</span>
+                  <span className={styles.doneSummaryVal}>
+                    <i className="fi fi-rr-map-marker" style={{ fontSize: '0.75rem', marginRight: 4 }} />
+                    {chosenJob.name}
+                  </span>
+                </div>
+              )}
+              <div className={`${styles.doneSummaryRow} ${styles.doneSummaryHours}`}>
+                <span className={styles.doneSummaryLabel}>Hours each</span>
+                <span className={styles.doneHoursVal}>{hours}h</span>
+              </div>
             </div>
+
             <div className={styles.doneNames}>
               {selectedEmployees.map(e => (
                 <span key={e.id} className={styles.namePill}>
@@ -136,26 +182,30 @@ export default function Foreman() {
                 </span>
               ))}
             </div>
-            <button className={styles.btnPrimary} onClick={reset}>
+
+            <button className={styles.submitBtn} onClick={reset}>
+              <i className="fi fi-rr-users" />
               Assign another crew
             </button>
-            <button className={styles.btnSecondary} onClick={() => navigate('/dashboard')}>
+            <button className={styles.secondaryBtn} onClick={() => navigate('/dashboard')}>
+              <i className="fi fi-rr-house-chimney" />
               View Dashboard
             </button>
           </div>
         )}
 
-        {/* STEP 1: Select Crew */}
+        {/* ── STEP 1: Select Crew ── */}
         {step === 'crew' && (
           <div className={styles.section}>
             <div className={styles.sectionHead}>
               <h2 className={styles.sectionTitle}>Who's on the crew today?</h2>
               <div className={styles.selectActions}>
-                <button className={styles.linkBtn} onClick={selectAll}>All</button>
-                <span className={styles.divider}>·</span>
-                <button className={styles.linkBtn} onClick={clearAll}>None</button>
+                <button className={styles.linkBtn} onClick={selectAll}>Select all</button>
+                <span className={styles.dot}>·</span>
+                <button className={styles.linkBtn} onClick={clearAll}>Clear</button>
               </div>
             </div>
+
             <div className={styles.empList}>
               {empList.map(emp => {
                 const isSelected = selected.has(emp.id)
@@ -166,51 +216,65 @@ export default function Foreman() {
                     onClick={() => toggleEmployee(emp.id)}
                   >
                     <div className={`${styles.checkbox} ${isSelected ? styles.checkboxChecked : ''}`}>
-                      {isSelected && <span>✓</span>}
+                      {isSelected && <i className="fi fi-sr-check" />}
+                    </div>
+                    <div className={styles.empAvatar}>
+                      {emp.first_name[0]}{emp.last_name[0]}
                     </div>
                     <div className={styles.empInfo}>
                       <span className={styles.empName}>{emp.first_name} {emp.last_name}</span>
-                      {emp.default_wc_code_id && (
-                        <span className={styles.empDefault}>
-                          Default: {emp.eligible_codes?.[0]?.code || '—'}
-                        </span>
-                      )}
+                      <span className={styles.empDefault}>
+                        {emp.eligible_codes?.[0]?.code
+                          ? `Default: ${emp.eligible_codes[0].code}`
+                          : 'No default code'}
+                      </span>
                     </div>
                   </button>
                 )
               })}
             </div>
 
+            {/* Sticky footer bar */}
             <div className={styles.stickyBar}>
               <div className={styles.selectedCount}>
                 {selected.size > 0
-                  ? `${selected.size} employee${selected.size !== 1 ? 's' : ''} selected`
-                  : 'Select employees above'}
+                  ? <><strong>{selected.size}</strong> employee{selected.size !== 1 ? 's' : ''} selected</>
+                  : 'Select employees above'
+                }
               </div>
               <button
-                className={styles.btnPrimary}
+                className={styles.submitBtn}
                 disabled={selected.size === 0}
                 onClick={() => setStep('code')}
               >
-                Next: Choose Code →
+                Next
+                <i className="fi fi-rr-angle-right" />
               </button>
             </div>
           </div>
         )}
 
-        {/* STEP 2: WC Code */}
+        {/* ── STEP 2: WC Code ── */}
         {step === 'code' && (
           <div className={styles.section}>
-            <button className={styles.backBtn} onClick={() => setStep('crew')}>← Back</button>
+            <button className={styles.backBtn} onClick={() => setStep('crew')}>
+              <i className="fi fi-rr-arrow-left" />
+              Back
+            </button>
+
             <div className={styles.crewPills}>
               {selectedEmployees.slice(0, 5).map(e => (
                 <span key={e.id} className={styles.namePill}>{e.first_name}</span>
               ))}
               {selectedEmployees.length > 5 && (
-                <span className={styles.namePillMore}>+{selectedEmployees.length - 5}</span>
+                <span className={styles.namePillMore}>+{selectedEmployees.length - 5} more</span>
               )}
             </div>
-            <h2 className={styles.sectionTitle}>What classification today?</h2>
+
+            <div className={styles.sectionHead}>
+              <h2 className={styles.sectionTitle}>What classification today?</h2>
+            </div>
+
             <div className={styles.codeList}>
               {codeList.map(code => (
                 <button
@@ -221,22 +285,30 @@ export default function Foreman() {
                 >
                   <span className={styles.codeBadge}>{code.code}</span>
                   <span className={styles.codeDesc}>{code.description}</span>
-                  <span className={styles.codeArrow}>→</span>
+                  <i className="fi fi-rr-angle-right" />
                 </button>
               ))}
             </div>
           </div>
         )}
 
-        {/* STEP 3: Job */}
+        {/* ── STEP 3: Job Site ── */}
         {step === 'job' && (
           <div className={styles.section}>
-            <button className={styles.backBtn} onClick={() => setStep('code')}>← Back</button>
-            <div className={styles.codeBanner} style={{ background: chosenCode?.color }}>
-              <span className={styles.bannerCode}>{chosenCode?.code}</span>
-              <span className={styles.bannerDesc}>{chosenCode?.description}</span>
+            <button className={styles.backBtn} onClick={() => setStep('code')}>
+              <i className="fi fi-rr-arrow-left" />
+              Back
+            </button>
+
+            <div className={styles.selectedBanner} style={{ '--code-color': chosenCode?.color }}>
+              <span className={styles.selectedCodePill}>{chosenCode?.code}</span>
+              <span className={styles.selectedDesc}>{chosenCode?.description}</span>
             </div>
-            <h2 className={styles.sectionTitle}>Which job?</h2>
+
+            <div className={styles.sectionHead}>
+              <h2 className={styles.sectionTitle}>Which job site?</h2>
+            </div>
+
             <div className={styles.jobList}>
               {jobList.map(job => (
                 <button
@@ -244,29 +316,50 @@ export default function Foreman() {
                   className={`${styles.jobRow} ${chosenJob?.id === job.id ? styles.jobRowSelected : ''}`}
                   onClick={() => { setChosenJob(job); setStep('hours') }}
                 >
-                  <span className={styles.jobName}>{job.name}</span>
-                  {job.job_number && <span className={styles.jobNum}>#{job.job_number}</span>}
+                  <div className={styles.jobRowLeft}>
+                    <div className={styles.jobIconWrap}>
+                      <i className="fi fi-rr-map-marker" />
+                    </div>
+                    <span className={styles.jobName}>{job.name}</span>
+                  </div>
+                  {job.job_number && (
+                    <span className={styles.jobNum}>#{job.job_number}</span>
+                  )}
                 </button>
               ))}
-              <button className={styles.skipRow} onClick={() => { setChosenJob(null); setStep('hours') }}>
-                No specific job
+              <button className={styles.skipBtn} onClick={() => { setChosenJob(null); setStep('hours') }}>
+                <i className="fi fi-rr-circle-xmark" />
+                No specific job site
               </button>
             </div>
           </div>
         )}
 
-        {/* STEP 4: Hours + Confirm */}
+        {/* ── STEP 4: Hours + Confirm ── */}
         {step === 'hours' && (
           <div className={styles.section}>
-            <button className={styles.backBtn} onClick={() => setStep('job')}>← Back</button>
-            <div className={styles.codeBanner} style={{ background: chosenCode?.color }}>
-              <span className={styles.bannerCode}>{chosenCode?.code}</span>
-              <span className={styles.bannerDesc}>{chosenCode?.description}</span>
+            <button className={styles.backBtn} onClick={() => setStep('job')}>
+              <i className="fi fi-rr-arrow-left" />
+              Back
+            </button>
+
+            <div className={styles.selectedBanner} style={{ '--code-color': chosenCode?.color }}>
+              <span className={styles.selectedCodePill}>{chosenCode?.code}</span>
+              <span className={styles.selectedDesc}>{chosenCode?.description}</span>
+              {chosenJob && (
+                <span className={styles.selectedJob}>
+                  <i className="fi fi-rr-map-marker" />
+                  {chosenJob.name}
+                </span>
+              )}
             </div>
 
-            <h2 className={styles.sectionTitle}>Hours for each employee</h2>
+            <div className={styles.sectionHead}>
+              <h2 className={styles.sectionTitle}>Hours for each employee</h2>
+            </div>
+
             <div className={styles.hoursRow}>
-              {['4','6','8','10','12'].map(h => (
+              {['4', '6', '8', '10', '12'].map(h => (
                 <button
                   key={h}
                   className={`${styles.hoursBtn} ${hours === h ? styles.hoursBtnActive : ''}`}
@@ -276,34 +369,46 @@ export default function Foreman() {
                 </button>
               ))}
             </div>
-            <input
-              type="number"
-              className={styles.hoursInput}
-              value={hours}
-              min="0.5" max="24" step="0.5"
-              onChange={e => setHours(e.target.value)}
-            />
 
-            {/* Summary */}
+            <div className={styles.hoursCustom}>
+              <label className={styles.customLabel}>
+                <i className="fi fi-rr-pencil" />
+                Custom hours
+              </label>
+              <input
+                type="number"
+                className={styles.hoursInput}
+                value={hours}
+                min="0.5"
+                max="24"
+                step="0.5"
+                onChange={e => setHours(e.target.value)}
+              />
+            </div>
+
+            {/* Summary card */}
             <div className={styles.confirmBox}>
-              <h3 className={styles.confirmTitle}>Summary</h3>
-              <div className={styles.confirmRow}>
-                <span>Employees</span>
-                <strong>{selected.size}</strong>
+              <div className={styles.confirmTitle}>
+                <i className="fi fi-rr-document" />
+                Assignment summary
               </div>
               <div className={styles.confirmRow}>
-                <span>Code</span>
+                <span>Employees</span>
+                <strong>{selected.size} workers</strong>
+              </div>
+              <div className={styles.confirmRow}>
+                <span>Classification</span>
                 <strong>{chosenCode?.code} — {chosenCode?.description}</strong>
               </div>
               {chosenJob && (
                 <div className={styles.confirmRow}>
-                  <span>Job</span>
+                  <span>Job site</span>
                   <strong>{chosenJob.name}</strong>
                 </div>
               )}
               <div className={styles.confirmRow}>
                 <span>Hours each</span>
-                <strong>{hours}h</strong>
+                <strong className={styles.confirmHours}>{hours}h</strong>
               </div>
               <div className={styles.confirmRow}>
                 <span>Date</span>
@@ -311,14 +416,29 @@ export default function Foreman() {
               </div>
             </div>
 
-            {error && <p className={styles.error}>{error}</p>}
+            {error && (
+              <div className={styles.errorRow}>
+                <i className="fi fi-rr-circle-xmark" />
+                {error}
+              </div>
+            )}
 
             <button
-              className={styles.btnPrimary}
+              className={styles.submitBtn}
               onClick={handleSubmit}
               disabled={loading}
             >
-              {loading ? 'Saving...' : `Assign ${selected.size} employees`}
+              {loading ? (
+                <>
+                  <span className={styles.spinner} />
+                  Saving…
+                </>
+              ) : (
+                <>
+                  <i className="fi fi-sr-check-circle" />
+                  Assign {selected.size} employee{selected.size !== 1 ? 's' : ''}
+                </>
+              )}
             </button>
           </div>
         )}

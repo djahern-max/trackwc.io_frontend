@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { auth } from '../services/api'
 import styles from './Login.module.css'
 
-// Company ID would normally come from subdomain or config
 const COMPANY_ID = 1
 
 export default function Login() {
   const navigate = useNavigate()
-  const [mode, setMode] = useState('pin')       // 'pin' | 'email'
+  const [mode, setMode] = useState('pin')
   const [pin, setPin] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -72,13 +71,16 @@ export default function Login() {
 
   return (
     <div className={styles.page}>
+
+      {/* Background decoration */}
+      <div className={styles.bgAccent} />
+
       <div className={styles.card}>
+
         {/* Logo */}
         <div className={styles.logoBlock}>
-          <span className={styles.logoMark}>WC</span>
-          <div>
-            <div className={styles.logoText}>TrackWC</div>
-            <div className={styles.logoSub}>Workers' Comp Tracker</div>
+          <div className={styles.logoText}>
+            TrackWC<span className={styles.logoAccent}>.io</span>
           </div>
         </div>
 
@@ -88,12 +90,14 @@ export default function Login() {
             className={`${styles.toggleBtn} ${mode === 'pin' ? styles.toggleActive : ''}`}
             onClick={() => { setMode('pin'); setError('') }}
           >
+            <i className="fi fi-rr-user" />
             PIN Login
           </button>
           <button
             className={`${styles.toggleBtn} ${mode === 'email' ? styles.toggleActive : ''}`}
             onClick={() => { setMode('email'); setError('') }}
           >
+            <i className="fi fi-rr-envelope" />
             Email Login
           </button>
         </div>
@@ -103,9 +107,8 @@ export default function Login() {
           <div className={styles.pinSection}>
             <p className={styles.pinLabel}>Enter your 4-digit PIN</p>
 
-            {/* PIN Dots */}
             <div className={styles.pinDots}>
-              {[0,1,2,3].map(i => (
+              {[0, 1, 2, 3].map(i => (
                 <div
                   key={i}
                   className={`${styles.pinDot} ${pin.length > i ? styles.pinDotFilled : ''} ${error ? styles.pinDotError : ''}`}
@@ -113,19 +116,39 @@ export default function Login() {
               ))}
             </div>
 
-            {error && <p className={styles.error}>{error}</p>}
+            {error && (
+              <div className={styles.errorRow}>
+                <i className="fi fi-rr-circle-xmark" />
+                {error}
+              </div>
+            )}
 
-            {/* Numpad */}
             <div className={styles.numpad}>
-              {['1','2','3','4','5','6','7','8','9','','0','⌫'].map((key, i) => (
-                <button
-                  key={i}
-                  className={`${styles.numKey} ${key === '' ? styles.numKeyEmpty : ''}`}
-                  onClick={() => key === '⌫' ? deletePin() : key !== '' ? appendPin(key) : null}
-                  disabled={loading || key === ''}
-                >
-                  {loading && pin.length === 4 && key === '0' ? '...' : key}
-                </button>
+              {['1', '2', '3', '4', '5', '6', '7', '8', '9', '', '0', 'del'].map((key, i) => (
+                key === '' ? (
+                  <div key={i} />
+                ) : key === 'del' ? (
+                  <button
+                    key={i}
+                    className={styles.numKeyDel}
+                    onClick={deletePin}
+                    disabled={loading || pin.length === 0}
+                    aria-label="Delete"
+                  >
+                    <i className="fi fi-rr-delete" />
+                  </button>
+                ) : (
+                  <button
+                    key={i}
+                    className={styles.numKey}
+                    onClick={() => appendPin(key)}
+                    disabled={loading}
+                  >
+                    {loading && pin.length === 4 ? (
+                      <span className={styles.numKeyLoading} />
+                    ) : key}
+                  </button>
+                )
               ))}
             </div>
           </div>
@@ -133,37 +156,71 @@ export default function Login() {
 
         {/* Email Mode */}
         {mode === 'email' && (
-          <form className={styles.emailForm} onSubmit={handleEmailLogin}>
+          <div className={styles.emailForm} onSubmit={handleEmailLogin}>
             <div className={styles.field}>
-              <label className={styles.fieldLabel}>Email</label>
-              <input
-                type="email"
-                className={styles.input}
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                placeholder="you@company.com"
-                autoComplete="email"
-                required
-              />
+              <label className={styles.fieldLabel}>Email address</label>
+              <div className={styles.inputWrap}>
+                <i className="fi fi-rr-envelope" />
+                <input
+                  type="email"
+                  className={styles.input}
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder="you@company.com"
+                  autoComplete="email"
+                  required
+                />
+              </div>
             </div>
+
             <div className={styles.field}>
               <label className={styles.fieldLabel}>Password</label>
-              <input
-                type="password"
-                className={styles.input}
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                placeholder="••••••••"
-                autoComplete="current-password"
-                required
-              />
+              <div className={styles.inputWrap}>
+                <i className="fi fi-rr-lock" />
+                <input
+                  type="password"
+                  className={styles.input}
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  autoComplete="current-password"
+                  required
+                />
+              </div>
             </div>
-            {error && <p className={styles.error}>{error}</p>}
-            <button type="submit" className={styles.loginBtn} disabled={loading}>
-              {loading ? 'Signing in...' : 'Sign In'}
+
+            {error && (
+              <div className={styles.errorRow}>
+                <i className="fi fi-rr-circle-xmark" />
+                {error}
+              </div>
+            )}
+
+            <button
+              className={styles.loginBtn}
+              disabled={loading}
+              onClick={handleEmailLogin}
+            >
+              {loading ? (
+                <>
+                  <span className={styles.spinner} />
+                  Signing in…
+                </>
+              ) : (
+                <>
+                  Sign In
+                  <i className="fi fi-rr-arrow-right" />
+                </>
+              )}
             </button>
-          </form>
+          </div>
         )}
+
+        {/* Footer */}
+        <p className={styles.footer}>
+          Workers' Comp Tracking · Powered by TrackHQ
+        </p>
+
       </div>
     </div>
   )

@@ -1,3 +1,6 @@
+/* CheckIn.module.css — TrackWC.io Design System v2 */
+
+/* ── Page ────────────────────────────────────────────────────────────────── */
 .page {
   min-height: 100dvh;
   display: flex;
@@ -5,105 +8,274 @@
   background: var(--bg);
 }
 
-/* ── Header ────────────────────────────────────────────────────────────────── */
+/* ── Header ──────────────────────────────────────────────────────────────── */
 .header {
-  background: var(--navy);
-  color: white;
-  padding: 20px 20px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .headerTop {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  justify-content: space-between;
+  margin-bottom: 16px;
 }
 
-.logo {
-  font-size: 1.125rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: var(--accent);
-}
-
-.headerRight {
+.workerInfo {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-tint);
+  color: var(--accent-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.workerName {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.dateLabel {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+.headerBadges {
+  display: flex;
+  gap: 6px;
   align-items: center;
 }
 
 .offlineBadge {
-  font-size: 0.75rem;
-  background: rgba(249,115,22,.2);
-  color: #fb923c;
-  padding: 3px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  background: var(--danger-bg);
+  color: var(--danger);
+  padding: 4px 9px;
   border-radius: 99px;
-  font-weight: 600;
+  border: 1px solid #FECACA;
+}
+
+.offlineBadge i {
+  font-size: 0.625rem;
 }
 
 .queueBadge {
-  font-size: 0.75rem;
-  background: rgba(255,255,255,.15);
-  color: white;
-  padding: 3px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  background: var(--warning-bg);
+  color: var(--warning);
+  padding: 4px 9px;
   border-radius: 99px;
 }
 
-.dateLabel {
-  font-size: 0.8125rem;
-  color: rgba(255,255,255,.6);
-  margin-bottom: 2px;
+.queueBadge i {
+  font-size: 0.625rem;
 }
 
-.workerName {
-  font-size: 1.375rem;
+/* ── Step Progress ───────────────────────────────────────────────────────── */
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding-bottom: 0;
+}
+
+.progressStep {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+  transition: border-color 0.2s;
+}
+
+.progressActive {
+  border-bottom-color: var(--accent);
+}
+
+.progressDone {
+  border-bottom-color: var(--accent);
+}
+
+.progressDot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-2);
+  color: var(--text-3);
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6875rem;
   font-weight: 700;
+  transition: all 0.2s;
 }
 
-/* ── Main ──────────────────────────────────────────────────────────────────── */
+.progressActive .progressDot {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.progressDone .progressDot {
+  background: var(--accent-tint);
+  color: var(--accent-dark);
+  border-color: var(--accent-border);
+  font-size: 0.625rem;
+}
+
+.progressLabel {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-3);
+  transition: color 0.2s;
+}
+
+.progressActive .progressLabel {
+  color: var(--accent-dark);
+}
+
+.progressDone .progressLabel {
+  color: var(--accent-dark);
+}
+
+/* ── Main ────────────────────────────────────────────────────────────────── */
 .main {
   flex: 1;
-  padding: 20px;
+  padding: 20px 16px 48px;
   max-width: 480px;
   width: 100%;
   margin: 0 auto;
 }
 
-/* ── Steps ─────────────────────────────────────────────────────────────────── */
+/* ── Step container ──────────────────────────────────────────────────────── */
 .step {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
+.stepHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .stepTitle {
   font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--navy);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.2px;
 }
 
 .stepSubtitle {
   font-size: 0.875rem;
   color: var(--text-2);
-  margin-top: -10px;
 }
 
 .backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: none;
   border: none;
   color: var(--text-2);
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   padding: 0;
   min-height: auto;
   align-self: flex-start;
+  transition: color 0.15s;
 }
 
-/* ── Code Grid ─────────────────────────────────────────────────────────────── */
+.backBtn:hover {
+  color: var(--text);
+}
+
+.backBtn i {
+  font-size: 0.875rem;
+}
+
+/* ── Selected Banner ─────────────────────────────────────────────────────── */
+.selectedBanner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: color-mix(in srgb, var(--code-color, var(--accent)) 8%, white);
+  border: 1px solid color-mix(in srgb, var(--code-color, var(--accent)) 20%, transparent);
+  border-radius: var(--radius-sm);
+  flex-wrap: wrap;
+}
+
+.selectedCodePill {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: white;
+  background: var(--code-color, var(--accent));
+  padding: 3px 9px;
+  border-radius: var(--radius-xs);
+  flex-shrink: 0;
+}
+
+.selectedDesc {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+}
+
+.selectedJob {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--text-2);
+  width: 100%;
+  padding-top: 2px;
+}
+
+.selectedJob i {
+  font-size: 0.6875rem;
+}
+
+/* ── Code Grid ───────────────────────────────────────────────────────────── */
 .codeGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
 }
 
 .codeBtn {
@@ -111,64 +283,53 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
-  padding: 16px;
+  padding: 16px 14px;
   background: var(--surface);
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--code-color, var(--accent));
   border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  min-height: 100px;
+  min-height: 110px;
   text-align: left;
-  transition: all 0.15s ease;
-  border-top: 4px solid var(--code-color);
+  transition: all 0.15s;
+  position: relative;
+}
+
+.codeBtn:hover {
+  box-shadow: var(--shadow-sm);
+  border-color: color-mix(in srgb, var(--code-color, var(--accent)) 40%, var(--border));
 }
 
 .codeBtn:active {
   transform: scale(0.97);
-  box-shadow: none;
+}
+
+.codeBtn i {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  font-size: 0.75rem;
+  color: var(--text-3);
 }
 
 .codeBadge {
   font-family: 'DM Mono', monospace;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--code-color);
-  background: color-mix(in srgb, var(--code-color) 12%, transparent);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--code-color, var(--accent));
+  background: color-mix(in srgb, var(--code-color, var(--accent)) 10%, transparent);
   padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
 }
 
 .codeLabel {
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text);
-  line-height: 1.3;
+  line-height: 1.35;
+  padding-right: 16px;
 }
 
-/* ── Selected Banner ───────────────────────────────────────────────────────── */
-.selectedBanner {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  border-radius: var(--radius-sm);
-  color: white;
-}
-
-.selectedCode {
-  font-family: 'DM Mono', monospace;
-  font-weight: 500;
-  font-size: 1rem;
-  background: rgba(255,255,255,.2);
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-
-.selectedDesc {
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-/* ── Job List ──────────────────────────────────────────────────────────────── */
+/* ── Job List ────────────────────────────────────────────────────────────── */
 .jobList {
   display: flex;
   flex-direction: column;
@@ -179,62 +340,122 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 16px;
+  padding: 13px 16px;
   background: var(--surface);
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   text-align: left;
-  transition: all 0.15s ease;
+  transition: all 0.15s;
+  gap: 10px;
 }
 
-.jobBtn:active, .jobBtnSelected {
-  border-color: var(--navy);
-  background: color-mix(in srgb, var(--navy) 6%, white);
+.jobBtn:hover {
+  border-color: var(--text-3);
+  box-shadow: var(--shadow-xs);
+}
+
+.jobBtnSelected {
+  border-color: var(--accent);
+  background: var(--accent-tint);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, .1);
+}
+
+.jobBtnLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.jobIconWrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-2);
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.jobBtn:hover .jobIconWrap,
+.jobBtnSelected .jobIconWrap {
+  background: var(--accent-tint);
+  border-color: var(--accent-border);
+  color: var(--accent-dark);
 }
 
 .jobName {
   font-size: 0.9375rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .jobNumber {
   font-family: 'DM Mono', monospace;
   font-size: 0.75rem;
   color: var(--text-3);
+  flex-shrink: 0;
 }
 
-.jobBtnSkip {
+.skipBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 16px;
   background: none;
-  border: 2px dashed var(--border);
+  border: 1.5px dashed var(--border);
   border-radius: var(--radius-sm);
   color: var(--text-3);
   font-size: 0.875rem;
-  padding: 14px 16px;
-  text-align: left;
+  font-weight: 500;
+  transition: all 0.15s;
 }
 
-/* ── Hours ─────────────────────────────────────────────────────────────────── */
+.skipBtn:hover {
+  border-color: var(--text-3);
+  color: var(--text-2);
+}
+
+.skipBtn i {
+  font-size: 0.875rem;
+}
+
+/* ── Hours ───────────────────────────────────────────────────────────────── */
 .hoursGrid {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 .hoursBtn {
   flex: 1;
-  padding: 14px 0;
+  padding: 14px 4px;
   background: var(--surface);
-  border: 2px solid var(--border);
+  border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-2);
-  transition: all 0.15s ease;
+  transition: all 0.15s;
+  min-height: auto;
+}
+
+.hoursBtn:hover {
+  border-color: var(--text-3);
+  color: var(--text);
 }
 
 .hoursBtnSelected {
-  border-color: var(--navy);
-  background: var(--navy);
+  border-color: var(--accent);
+  background: var(--accent);
   color: white;
 }
 
@@ -245,133 +466,234 @@
 }
 
 .customLabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-3);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
+}
+
+.customLabel i {
+  font-size: 0.6875rem;
 }
 
 .hoursInput {
   font-family: 'DM Mono', monospace;
-  font-size: 1.25rem;
-  font-weight: 500;
-  padding: 12px 16px;
-  border: 2px solid var(--border);
+  font-size: 1.375rem;
+  font-weight: 600;
+  padding: 14px 16px;
+  border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
   width: 100%;
   color: var(--text);
   background: var(--surface);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
 }
 
 .hoursInput:focus {
-  outline: none;
-  border-color: var(--navy);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, .12);
 }
 
-/* ── Buttons ───────────────────────────────────────────────────────────────── */
-.btnPrimary {
+/* ── Submit Button ───────────────────────────────────────────────────────── */
+.submitBtn {
   width: 100%;
-  padding: 16px;
-  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: var(--accent);
   color: white;
   font-size: 1rem;
   font-weight: 700;
   border-radius: var(--radius);
-  letter-spacing: 0.2px;
+  border: none;
+  min-height: auto;
+  transition: background 0.15s, transform 0.1s;
+  letter-spacing: 0.1px;
 }
 
-.btnPrimary:disabled {
+.submitBtn:hover:not(:disabled) {
+  background: var(--accent-dark);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.submitBtn:disabled {
   opacity: 0.5;
-  cursor: not-allowed;
+  pointer-events: none;
 }
 
-.btnSecondary {
-  width: 100%;
-  padding: 14px;
-  background: none;
-  border: 2px solid var(--border);
-  color: var(--text-2);
+.submitBtn i {
+  font-size: 1rem;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, .4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Error ───────────────────────────────────────────────────────────────── */
+.errorRow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--danger);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: var(--danger-bg);
+  border: 1px solid #FECACA;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+}
+
+.errorRow i {
   font-size: 0.9375rem;
-  font-weight: 600;
-  border-radius: var(--radius);
+  flex-shrink: 0;
 }
 
-/* ── Done Card ─────────────────────────────────────────────────────────────── */
+/* ── Done Card ───────────────────────────────────────────────────────────── */
 .doneCard {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  padding: 32px 0;
+  gap: 14px;
+  padding: 32px 0 16px;
 }
 
-.doneIcon {
-  width: 72px;
-  height: 72px;
-  background: var(--success);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 700;
+.doneIconWrap {
+  font-size: 3rem;
+  color: var(--success);
+  line-height: 1;
 }
 
 .doneTitle {
   font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--navy);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+
+.doneSub {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  margin-top: -6px;
 }
 
 .doneSummary {
   width: 100%;
-  border: 3px solid;
-  border-radius: var(--radius);
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  border: 2px solid;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
   background: var(--surface);
-}
-
-.doneCode {
-  font-family: 'DM Mono', monospace;
-  font-size: 1.25rem;
-  font-weight: 500;
-}
-
-.doneDesc {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.doneJob {
-  font-size: 0.875rem;
-  color: var(--text-2);
-}
-
-.doneHours {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text);
   margin-top: 4px;
 }
 
-.offlineNote {
+.doneSummaryRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-2);
+  gap: 12px;
+}
+
+.doneSummaryRow:last-child {
+  border-bottom: none;
+}
+
+.doneSummaryLabel {
   font-size: 0.8125rem;
-  color: var(--warning);
-  text-align: center;
+  color: var(--text-3);
   font-weight: 500;
 }
 
-.error {
-  color: var(--danger);
-  font-size: 0.875rem;
+.doneSummaryVal {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: right;
+}
+
+.doneCodePill {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: white;
+  padding: 3px 10px;
+  border-radius: var(--radius-xs);
+}
+
+.doneSummaryHours {
+  background: var(--bg);
+}
+
+.doneHoursVal {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+}
+
+.offlineNote {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
   font-weight: 500;
-  padding: 10px 14px;
-  background: color-mix(in srgb, var(--danger) 10%, white);
+  color: var(--warning);
+  background: var(--warning-bg);
   border-radius: var(--radius-sm);
+  padding: 9px 14px;
+  width: 100%;
+  justify-content: center;
+}
+
+.offlineNote i {
+  font-size: 0.875rem;
+}
+
+.changeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 13px;
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  min-height: auto;
+  transition: all 0.15s;
+  margin-top: 4px;
+}
+
+.changeBtn:hover {
+  border-color: var(--text-3);
+  color: var(--text);
+}
+
+.changeBtn i {
+  font-size: 0.875rem;
 }

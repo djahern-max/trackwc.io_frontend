@@ -1,57 +1,69 @@
+/* Login.module.css — TrackWC.io Design System v2 */
+
+/* ── Page ────────────────────────────────────────────────────────────────── */
 .page {
   min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--navy);
-  padding: 20px;
+  background: var(--bg);
+  padding: 24px 20px;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Subtle top-right accent blob */
+.bgAccent {
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(16, 185, 129, .08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
 .card {
-  background: white;
-  border-radius: var(--radius-lg);
-  padding: 32px 28px;
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  padding: 32px 28px 24px;
   width: 100%;
   max-width: 360px;
   box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
   gap: 24px;
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Logo ────────────────────────────────────────────────────────────────── */
 .logoBlock {
   display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logoMark {
-  width: 48px;
-  height: 48px;
-  background: var(--navy);
-  color: var(--accent);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  font-weight: 800;
-  font-size: 1rem;
-  letter-spacing: 1px;
-  flex-shrink: 0;
 }
 
 .logoText {
   font-size: 1.25rem;
   font-weight: 800;
-  color: var(--navy);
-  letter-spacing: -0.3px;
+  color: var(--text);
+  letter-spacing: -0.4px;
+  line-height: 1.1;
+}
+
+.logoAccent {
+  color: var(--accent);
 }
 
 .logoSub {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
   color: var(--text-3);
-  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-top: 3px;
 }
 
 /* ── Toggle ──────────────────────────────────────────────────────────────── */
@@ -65,23 +77,32 @@
 
 .toggleBtn {
   flex: 1;
-  padding: 8px;
-  border-radius: 5px;
-  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 8px;
+  border-radius: 6px;
+  font-size: 0.8125rem;
   font-weight: 600;
   background: none;
   color: var(--text-2);
   min-height: auto;
   transition: all 0.15s;
+  border: none;
+}
+
+.toggleBtn i {
+  font-size: 0.875rem;
 }
 
 .toggleActive {
-  background: white;
-  color: var(--navy);
+  background: var(--surface);
+  color: var(--text);
   box-shadow: var(--shadow-sm);
 }
 
-/* ── PIN ─────────────────────────────────────────────────────────────────── */
+/* ── PIN Section ─────────────────────────────────────────────────────────── */
 .pinSection {
   display: flex;
   flex-direction: column;
@@ -93,80 +114,159 @@
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--text-2);
+  text-align: center;
 }
 
+/* ── PIN Dots ────────────────────────────────────────────────────────────── */
 .pinDots {
   display: flex;
-  gap: 16px;
+  gap: 14px;
 }
 
 .pinDot {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  border: 2.5px solid var(--border);
+  border: 2px solid var(--border);
+  background: transparent;
   transition: all 0.15s ease;
 }
 
 .pinDotFilled {
-  background: var(--navy);
-  border-color: var(--navy);
-  transform: scale(1.1);
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.15);
 }
 
 .pinDotError {
   border-color: var(--danger) !important;
   background: var(--danger) !important;
-  animation: shake 0.3s ease;
+  animation: shake 0.35s ease;
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-4px); }
-  75% { transform: translateX(4px); }
+
+  0%,
+  100% {
+    transform: translateX(0) scale(1);
+  }
+
+  20% {
+    transform: translateX(-5px) scale(1.1);
+  }
+
+  40% {
+    transform: translateX(5px) scale(1.1);
+  }
+
+  60% {
+    transform: translateX(-3px);
+  }
+
+  80% {
+    transform: translateX(3px);
+  }
 }
 
 /* ── Numpad ──────────────────────────────────────────────────────────────── */
 .numpad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 8px;
   width: 100%;
 }
 
 .numKey {
-  height: 64px;
+  height: 62px;
   background: var(--bg);
-  border: none;
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   font-size: 1.375rem;
-  font-weight: 600;
-  color: var(--navy);
+  font-weight: 700;
+  color: var(--text);
   transition: all 0.1s ease;
   min-height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.numKey:active {
-  background: var(--navy);
+.numKey:hover:not(:disabled) {
+  background: var(--bg-2);
+  border-color: var(--text-3);
+}
+
+.numKey:active:not(:disabled) {
+  background: var(--charcoal, #1A1F2E);
   color: white;
+  border-color: var(--charcoal, #1A1F2E);
   transform: scale(0.95);
 }
 
 .numKey:disabled {
-  opacity: 0;
+  opacity: 0.45;
   pointer-events: none;
 }
 
-.numKeyEmpty {
-  background: none;
+/* Delete key */
+.numKeyDel {
+  height: 62px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 1.125rem;
+  color: var(--text-2);
+  transition: all 0.1s ease;
+  min-height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.numKeyDel:hover:not(:disabled) {
+  background: var(--danger-bg);
+  border-color: #FECACA;
+  color: var(--danger);
+}
+
+.numKeyDel:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.numKeyDel:disabled {
+  opacity: 0.3;
   pointer-events: none;
+}
+
+/* Loading pulse inside key */
+.numKeyLoading {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 0.8s ease-in-out infinite;
+  display: block;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
 /* ── Email Form ──────────────────────────────────────────────────────────── */
 .emailForm {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .field {
@@ -179,45 +279,131 @@
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text-2);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+}
+
+/* Input with leading icon */
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputWrap i {
+  position: absolute;
+  left: 13px;
+  font-size: 0.9375rem;
+  color: var(--text-3);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .input {
-  padding: 12px 14px;
-  border: 2px solid var(--border);
-  border-radius: var(--radius-sm);
+  width: 100%;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   color: var(--text);
-  background: white;
-  transition: border-color 0.15s;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px 11px 40px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.input::placeholder {
+  color: var(--text-3);
+}
+
+.input:hover {
+  border-color: var(--text-3);
 }
 
 .input:focus {
-  outline: none;
-  border-color: var(--navy);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, .12);
 }
 
+/* ── Login Button ────────────────────────────────────────────────────────── */
 .loginBtn {
-  padding: 14px;
-  background: var(--navy);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 20px;
+  background: var(--accent);
   color: white;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   font-weight: 700;
   border-radius: var(--radius-sm);
-  width: 100%;
+  border: none;
+  min-height: auto;
   margin-top: 4px;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.loginBtn:hover:not(:disabled) {
+  background: var(--accent-dark);
+}
+
+.loginBtn:active:not(:disabled) {
+  transform: scale(0.98);
 }
 
 .loginBtn:disabled {
-  opacity: 0.6;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.loginBtn i {
+  font-size: 0.875rem;
+}
+
+/* Spinner inside button */
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, .4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: block;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ── Error ───────────────────────────────────────────────────────────────── */
-.error {
+.errorRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   color: var(--danger);
   font-size: 0.875rem;
   font-weight: 500;
+  background: var(--danger-bg);
+  border: 1px solid #FECACA;
+  border-radius: var(--radius-sm);
+  padding: 9px 14px;
+}
+
+.errorRow i {
+  font-size: 0.9375rem;
+  flex-shrink: 0;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.footer {
+  font-size: 0.6875rem;
+  color: var(--text-3);
   text-align: center;
+  font-weight: 500;
+  padding-top: 4px;
+  border-top: 1px solid var(--border-2);
 }

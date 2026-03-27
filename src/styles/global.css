@@ -1,51 +1,103 @@
-/* TrackWC.io — Design System */
-/* Industrial/utilitarian aesthetic: clear, fast, readable at a glance */
+/* ============================================================
+   TrackWC.io — Design System v2
+   RYZE.ai · Refined Clarity
+   ============================================================
+   Palette:    Charcoal + Emerald (replaces Navy + Orange)
+   Typography: Plus Jakarta Sans + DM Mono
+   Icons:      FlatIcon Uicons (see index.html)
+   ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Mono:wght@400;500&display=swap');
+
+/* ── Flaticon Uicons ──────────────────────────────────────────
+   Add these two lines to your index.html <head>:
+
+   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+
+   Usage in JSX:  <i className="fi fi-rr-user" />
+   Solid active:  <i className="fi fi-sr-check-circle" />
+   Icon catalog:  https://www.flaticon.com/uicons
+──────────────────────────────────────────────────────────── */
 
 :root {
-  /* Brand */
-  --navy:       #0f2942;
-  --navy-mid:   #1a3d5c;
-  --navy-light: #2a5278;
-  --accent:     #f97316;
-  --accent-dim: #ea580c;
+  /* ── Brand ───────────────────────────────────────────────── */
+  --charcoal: #1A1F2E;
+  /* replaces --navy        */
+  --charcoal-mid: #2D3548;
+  /* replaces --navy-mid    */
+  --charcoal-light: #3E4A63;
+  /* replaces --navy-light  */
+  --accent: #10B981;
+  /* replaces orange #f97316 */
+  --accent-dark: #059669;
+  --accent-tint: #ECFDF5;
+  --accent-border: #A7F3D0;
 
-  /* WC Code Colors (match seed.py) */
-  --code-0042: #16a34a;
-  --code-6217: #dc2626;
-  --code-8227: #d97706;
-  --code-8742: #7c3aed;
-  --code-8810: #0891b2;
-  --code-9402: #1d4ed8;
+  /* ── WC Code Colors (accessible, distinguishable) ─────────
+     Tip: used as left-border accents on cards, not full bg  */
+  --code-0042: #16A34A;
+  /* Landscaping    → green   */
+  --code-6217: #DC2626;
+  /* Excavation     → red     */
+  --code-8227: #D97706;
+  /* Construction   → amber   */
+  --code-8742: #7C3AED;
+  /* Sales/Outside  → violet  */
+  --code-8810: #0891B2;
+  /* Clerical       → cyan    */
+  --code-9402: #2563EB;
+  /* Street/Drivers → blue    */
 
-  /* UI */
-  --bg:         #f4f7fb;
-  --surface:    #ffffff;
-  --border:     #dde4ee;
-  --text:       #0f2942;
-  --text-2:     #4a6080;
-  --text-3:     #8aa0b8;
-  --success:    #16a34a;
-  --danger:     #dc2626;
-  --warning:    #d97706;
+  /* ── UI Neutrals ─────────────────────────────────────────── */
+  --bg: #F7F8FA;
+  --bg-2: #F1F3F7;
+  --surface: #FFFFFF;
+  --border: #E2E8F0;
+  --border-2: #F1F5F9;
 
-  /* Sizing */
-  --radius-sm:  6px;
-  --radius:     12px;
-  --radius-lg:  18px;
-  --shadow-sm:  0 1px 3px rgba(15,41,66,.08);
-  --shadow:     0 4px 16px rgba(15,41,66,.12);
-  --shadow-lg:  0 8px 32px rgba(15,41,66,.16);
+  /* ── Text ────────────────────────────────────────────────── */
+  --text: #1A1F2E;
+  --text-2: #64748B;
+  --text-3: #94A3B8;
 
-  /* Mobile touch targets */
-  --touch-min:  48px;
+  /* ── Semantic ────────────────────────────────────────────── */
+  --success: #16A34A;
+  --success-bg: #F0FDF4;
+  --danger: #DC2626;
+  --danger-bg: #FEF2F2;
+  --warning: #D97706;
+  --warning-bg: #FFFBEB;
+  --info: #2563EB;
+  --info-bg: #EFF6FF;
 
-  font-family: 'DM Sans', sans-serif;
+  /* ── Spacing / Radius / Shadow ───────────────────────────── */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  --shadow-xs: 0 1px 2px rgba(26, 31, 46, .05);
+  --shadow-sm: 0 1px 4px rgba(26, 31, 46, .07), 0 0 0 1px rgba(26, 31, 46, .04);
+  --shadow: 0 4px 16px rgba(26, 31, 46, .09), 0 0 0 1px rgba(26, 31, 46, .05);
+  --shadow-lg: 0 8px 32px rgba(26, 31, 46, .12), 0 0 0 1px rgba(26, 31, 46, .05);
+
+  /* ── Touch / Interaction ─────────────────────────────────── */
+  --touch-min: 48px;
+  --transition: 0.15s ease;
+
+  /* ── Typography ──────────────────────────────────────────── */
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-* {
+/* ── Reset ──────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -55,38 +107,1002 @@
 body {
   background: var(--bg);
   color: var(--text);
-  line-height: 1.5;
+  line-height: 1.6;
   min-height: 100dvh;
   overscroll-behavior: none;
 }
 
-/* Touch-friendly interactive elements */
-button, a, [role="button"] {
+/* ── Interactive baseline ────────────────────────────────────── */
+button,
+a,
+[role="button"] {
   min-height: var(--touch-min);
   cursor: pointer;
 }
 
 button {
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
   border: none;
   outline: none;
-  transition: all 0.15s ease;
+  transition: all var(--transition);
 }
 
 button:active {
   transform: scale(0.97);
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+a {
+  color: var(--accent-dark);
+  text-decoration: none;
+}
 
-/* Utility classes */
-.mono { font-family: 'DM Mono', monospace; }
-.text-2 { color: var(--text-2); }
-.text-sm { font-size: 0.875rem; }
-.text-xs { font-size: 0.75rem; }
-.font-bold { font-weight: 700; }
-.font-medium { font-weight: 500; }
+/* ── Focus ring (accessibility) ─────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-3);
+}
+
+/* ============================================================
+   BUTTON SYSTEM
+   ============================================================ */
+
+/* Primary — emerald filled */
+.btn,
+button.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--accent-dark);
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-3);
+  background: var(--bg-2);
+}
+
+.btn-ghost {
+  background: var(--accent-tint);
+  color: var(--accent-dark);
+}
+
+.btn-ghost:hover {
+  background: var(--accent-border);
+}
+
+.btn-danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1.5px solid #FECACA;
+}
+
+.btn-danger:hover {
+  background: #FEE2E2;
+}
+
+.btn-text {
+  background: none;
+  color: var(--text-2);
+  padding: 10px 12px;
+}
+
+.btn-text:hover {
+  color: var(--text);
+  background: var(--bg-2);
+}
+
+/* ── Icon button (square) */
+.btn-icon {
+  width: var(--touch-min);
+  height: var(--touch-min);
+  padding: 0;
+  background: var(--surface);
+  color: var(--text-2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: auto;
+}
+
+.btn-icon:hover {
+  border-color: var(--text-3);
+  color: var(--text);
+}
+
+/* ── Full-width block button */
+.btn-block {
+  width: 100%;
+}
+
+/* ── Large (touch-optimized for field use) */
+.btn-lg {
+  padding: 15px 24px;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  min-height: 56px;
+}
+
+/* ── Small */
+.btn-sm {
+  padding: 6px 14px;
+  font-size: 0.8125rem;
+  border-radius: var(--radius-xs);
+  min-height: auto;
+}
+
+/* ============================================================
+   CARD SYSTEM
+   ============================================================ */
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.card-body {
+  padding: 18px 20px;
+}
+
+.card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.card-footer {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border-2);
+  background: var(--bg);
+}
+
+/* ── Stat card (dashboard metrics) */
+.stat-card {
+  background: var(--bg-2);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+
+.stat-card-value {
+  font-size: 1.625rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.3px;
+  line-height: 1.1;
+}
+
+.stat-card-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-top: 4px;
+}
+
+.stat-card-delta {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 6px;
+}
+
+/* == Code accent card (WC classification cards) */
+.code-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--code-color, var(--accent));
+  padding: 14px 16px;
+  transition: box-shadow var(--transition);
+}
+
+.code-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+/* ============================================================
+   BADGE / PILL SYSTEM
+   ============================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.badge-success {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.badge-danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.badge-warning {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.badge-info {
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+.badge-neutral {
+  background: var(--bg-2);
+  color: var(--text-2);
+}
+
+.badge-accent {
+  background: var(--accent-tint);
+  color: var(--accent-dark);
+}
+
+/* ============================================================
+   FORM ELEMENTS
+   ============================================================ */
+
+.label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-2);
+  margin-bottom: 6px;
+  letter-spacing: 0.1px;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--text-3);
+}
+
+.input:hover,
+.select:hover,
+.textarea:hover {
+  border-color: var(--text-3);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, .12);
+}
+
+.input-error {
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, .1) !important;
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
+.field-error {
+  font-size: 0.8125rem;
+  color: var(--danger);
+  margin-top: 5px;
+}
+
+/* ── PIN input (large, mobile-first) */
+.pin-input {
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: 'DM Mono', monospace;
+  text-align: center;
+  letter-spacing: 0.25em;
+  padding: 16px;
+  height: 72px;
+  border-radius: var(--radius);
+  min-height: auto;
+}
+
+/* ============================================================
+   NAVIGATION / HEADER
+   ============================================================ */
+
+.app-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-logo {
+  font-size: 1.0625rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+
+.app-logo-accent {
+  color: var(--accent);
+}
+
+.app-logo-sub {
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block;
+  margin-top: 1px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Bottom tab bar (mobile admin/foreman) */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 8px;
+  background: none;
+  border: none;
+  min-height: auto;
+  color: var(--text-3);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  transition: color var(--transition);
+}
+
+.tab-item.active {
+  color: var(--accent);
+}
+
+.tab-item i {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.page-body {
+  flex: 1;
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.page-body-wide {
+  max-width: 900px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack-xs {
+  gap: 4px;
+}
+
+.stack-sm {
+  gap: 8px;
+}
+
+.stack {
+  gap: 12px;
+}
+
+.stack-md {
+  gap: 16px;
+}
+
+.stack-lg {
+  gap: 24px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.row-between {
+  justify-content: space-between;
+}
+
+.row-center {
+  justify-content: center;
+}
+
+.row-xs {
+  gap: 4px;
+}
+
+.row-sm {
+  gap: 8px;
+}
+
+.row {
+  gap: 12px;
+}
+
+.row-md {
+  gap: 16px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* ── Divider */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border-2);
+  margin: 4px 0;
+}
+
+/* ── Section label */
+.section-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-3);
+  padding: 0 0 6px;
+}
+
+/* ============================================================
+   TYPOGRAPHY HELPERS
+   ============================================================ */
+
+.mono {
+  font-family: 'DM Mono', monospace;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-md {
+  font-size: 1rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.text-1 {
+  color: var(--text);
+}
+
+.text-2 {
+  color: var(--text-2);
+}
+
+.text-3 {
+  color: var(--text-3);
+}
+
+.text-accent {
+  color: var(--accent-dark);
+}
+
+.text-success {
+  color: var(--success);
+}
+
+.text-danger {
+  color: var(--danger);
+}
+
+.text-warning {
+  color: var(--warning);
+}
+
+.font-400 {
+  font-weight: 400;
+}
+
+.font-500 {
+  font-weight: 500;
+}
+
+.font-600 {
+  font-weight: 600;
+}
+
+.font-700 {
+  font-weight: 700;
+}
+
+.font-800 {
+  font-weight: 800;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   ICON UTILITIES  (FlatIcon Uicons)
+   ============================================================ */
+
+/* Inline icon that sits on text baseline */
+.icon-inline {
+  font-size: 1em;
+  vertical-align: -0.125em;
+  line-height: 1;
+}
+
+/* Icon with colored background circle/square */
+.icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-wrap i {
+  font-size: 1.125rem;
+}
+
+.icon-wrap-sm {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
+
+.icon-wrap-sm i {
+  font-size: 0.875rem;
+}
+
+.icon-wrap-lg {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius);
+}
+
+.icon-wrap-lg i {
+  font-size: 1.375rem;
+}
+
+/* Colored icon wrap variants */
+.icon-wrap-accent {
+  background: var(--accent-tint);
+  color: var(--accent-dark);
+}
+
+.icon-wrap-success {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.icon-wrap-danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.icon-wrap-warning {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.icon-wrap-info {
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+.icon-wrap-neutral {
+  background: var(--bg-2);
+  color: var(--text-2);
+}
+
+/* ============================================================
+   EMPTY STATES
+   ============================================================ */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.empty-state-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.empty-state-icon i {
+  font-size: 1.625rem;
+  color: var(--text-3);
+}
+
+.empty-state-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.empty-state-desc {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   OFFLINE / STATUS INDICATORS
+   ============================================================ */
+
+.offline-badge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  background: var(--danger-bg);
+  color: var(--danger);
+  padding: 3px 10px;
+  border-radius: 99px;
+  border: 1px solid #FECACA;
+}
+
+.queue-badge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  background: var(--warning-bg);
+  color: var(--warning);
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+
+/* ============================================================
+   LIST / ROW ITEMS
+   ============================================================ */
+
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-2);
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.list-item-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.list-item-sub {
+  font-size: 0.8125rem;
+  color: var(--text-2);
+  margin-top: 2px;
+}
+
+/* ============================================================
+   AVATAR
+   ============================================================ */
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+  flex-shrink: 0;
+}
+
+.avatar-sm {
+  width: 30px;
+  height: 30px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+}
+
+.avatar-lg {
+  width: 52px;
+  height: 52px;
+  font-size: 1.125rem;
+  border-radius: var(--radius);
+}
+
+/* ============================================================
+   LOADING SPINNER
+   ============================================================ */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+.spinner-lg {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+/* ============================================================
+   TOAST / ALERT BANNERS
+   ============================================================ */
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.alert i {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.alert-success {
+  background: var(--success-bg);
+  color: #166534;
+  border: 1px solid #BBF7D0;
+}
+
+.alert-danger {
+  background: var(--danger-bg);
+  color: #991B1B;
+  border: 1px solid #FECACA;
+}
+
+.alert-warning {
+  background: var(--warning-bg);
+  color: #92400E;
+  border: 1px solid #FDE68A;
+}
+
+.alert-info {
+  background: var(--info-bg);
+  color: #1E40AF;
+  border: 1px solid #BFDBFE;
+}
+
+/* ============================================================
+   TABLE
+   ============================================================ */
+
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.table th {
+  background: var(--bg-2);
+  color: var(--text-2);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 12px 14px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border-2);
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background: var(--bg);
+}
+
+.table-total td {
+  background: var(--bg-2);
+  font-weight: 700;
+  border-top: 2px solid var(--border);
+}
+
+/* ============================================================
+   SKIP LINK (accessibility)
+   ============================================================ */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 12px;
+  background: var(--accent);
+  color: white;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  top: 12px;
+}

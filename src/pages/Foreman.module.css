@@ -1,3 +1,6 @@
+/* Foreman.module.css — TrackWC.io Design System v2 */
+
+/* ── Page ────────────────────────────────────────────────────────────────── */
 .page {
   min-height: 100dvh;
   display: flex;
@@ -5,164 +8,316 @@
   background: var(--bg);
 }
 
-/* ── Header ────────────────────────────────────────────────────────────────── */
+/* ── Header ──────────────────────────────────────────────────────────────── */
 .header {
-  background: var(--navy);
-  color: white;
-  padding: 16px 20px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 20px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .headerTop {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  margin-bottom: 12px;
 }
 
 .backNav {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: none;
   border: none;
-  color: rgba(255,255,255,.6);
+  color: var(--text-2);
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   min-height: auto;
   padding: 0;
+  transition: color 0.15s;
 }
 
-.logo {
+.backNav:hover {
+  color: var(--text);
+}
+
+.backNav i {
   font-size: 0.875rem;
-  font-weight: 700;
+}
+
+.logoText {
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.2px;
+}
+
+.logoAccent {
   color: var(--accent);
-  letter-spacing: 0.5px;
+}
+
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 7px 13px;
+  border-radius: 99px;
+  min-height: auto;
+  transition: all 0.15s;
+}
+
+.logoutBtn i {
+  font-size: 0.875rem;
+}
+
+.logoutBtn:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: var(--danger-bg);
+}
+
+.headerBottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.2px;
+  line-height: 1.1;
 }
 
 .date {
-  font-size: 0.8125rem;
-  color: rgba(255,255,255,.55);
-  margin-top: 2px;
+  font-size: 0.75rem;
+  color: var(--text-3);
+  font-weight: 500;
+  margin-top: 3px;
 }
 
-/* ── Step Indicator ─────────────────────────────────────────────────────────── */
-.steps {
+.crewCountBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: 99px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.crewCountBadge i {
+  font-size: 0.75rem;
+}
+
+/* ── Step Progress ───────────────────────────────────────────────────────── */
+.progress {
   display: flex;
-  background: var(--navy-mid);
-  padding: 10px 20px;
-  gap: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
 }
 
-.stepPip {
+.progressStep {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
-  opacity: 0.4;
-  transition: opacity 0.2s;
+  gap: 5px;
+  padding: 10px 4px 11px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
 }
 
-.stepActive {
-  opacity: 1;
+.progressActive {
+  border-bottom-color: var(--accent);
 }
 
-.stepDone {
-  opacity: 0.75;
+.progressDone {
+  border-bottom-color: var(--accent);
 }
 
-.stepNum {
-  width: 24px;
-  height: 24px;
+.progressDot {
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: rgba(255,255,255,.15);
-  color: white;
-  font-size: 0.75rem;
-  font-weight: 700;
+  background: var(--bg-2);
+  border: 1.5px solid var(--border);
+  color: var(--text-3);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.stepActive .stepNum {
-  background: var(--accent);
-}
-
-.stepDone .stepNum {
-  background: var(--success);
-}
-
-.stepLabel {
   font-size: 0.6875rem;
-  font-weight: 600;
-  color: rgba(255,255,255,.8);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-weight: 700;
+  transition: all 0.2s;
 }
 
-/* ── Main ──────────────────────────────────────────────────────────────────── */
+.progressActive .progressDot {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.progressDone .progressDot {
+  background: var(--accent-tint);
+  border-color: var(--accent-border);
+  color: var(--accent-dark);
+  font-size: 0.5625rem;
+}
+
+.progressLabel {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-3);
+  transition: color 0.2s;
+  text-align: center;
+}
+
+.progressActive .progressLabel,
+.progressDone .progressLabel {
+  color: var(--accent-dark);
+}
+
+/* ── Main ────────────────────────────────────────────────────────────────── */
 .main {
   flex: 1;
   overflow-y: auto;
 }
 
 .section {
-  padding: 20px;
+  padding: 20px 16px 120px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   max-width: 520px;
   margin: 0 auto;
   width: 100%;
-  padding-bottom: 100px;
 }
 
 .sectionHead {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .sectionTitle {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--navy);
+  font-size: 1.0625rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.1px;
 }
 
 .selectActions {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
+  flex-shrink: 0;
 }
 
 .linkBtn {
   background: none;
   border: none;
-  color: var(--accent-dim);
-  font-size: 0.875rem;
+  color: var(--accent-dark);
+  font-size: 0.8125rem;
   font-weight: 600;
   min-height: auto;
-  padding: 4px;
+  padding: 4px 6px;
+  transition: opacity 0.15s;
 }
 
-.divider {
+.linkBtn:hover {
+  opacity: 0.7;
+}
+
+.dot {
   color: var(--text-3);
+  font-size: 0.875rem;
 }
 
 .backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: none;
   border: none;
   color: var(--text-2);
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   padding: 0;
   min-height: auto;
   align-self: flex-start;
+  transition: color 0.15s;
 }
 
-/* ── Employee List ──────────────────────────────────────────────────────────── */
+.backBtn:hover {
+  color: var(--text);
+}
+
+.backBtn i {
+  font-size: 0.875rem;
+}
+
+/* ── Selected Banner ─────────────────────────────────────────────────────── */
+.selectedBanner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: color-mix(in srgb, var(--code-color, var(--accent)) 8%, white);
+  border: 1px solid color-mix(in srgb, var(--code-color, var(--accent)) 20%, transparent);
+  border-radius: var(--radius-sm);
+  flex-wrap: wrap;
+}
+
+.selectedCodePill {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: white;
+  background: var(--code-color, var(--accent));
+  padding: 3px 9px;
+  border-radius: var(--radius-xs);
+  flex-shrink: 0;
+}
+
+.selectedDesc {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+}
+
+.selectedJob {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--text-2);
+  width: 100%;
+  padding-top: 2px;
+}
+
+.selectedJob i {
+  font-size: 0.6875rem;
+}
+
+/* ── Employee List ───────────────────────────────────────────────────────── */
 .empList {
   display: flex;
   flex-direction: column;
@@ -172,44 +327,70 @@
 .empRow {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
+  gap: 10px;
+  padding: 11px 14px;
   background: var(--surface);
-  border: 2px solid var(--border);
+  border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
   text-align: left;
   transition: all 0.12s;
 }
 
+.empRow:hover {
+  border-color: var(--text-3);
+}
+
 .empRowSelected {
-  border-color: var(--navy);
-  background: color-mix(in srgb, var(--navy) 5%, white);
+  border-color: var(--accent);
+  background: var(--accent-tint);
 }
 
 .checkbox {
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  border: 2px solid var(--border);
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1.5px solid var(--border);
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.5625rem;
   color: white;
   transition: all 0.12s;
+  background: var(--surface);
 }
 
 .checkboxChecked {
-  background: var(--navy);
-  border-color: var(--navy);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.empAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-2);
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.12s;
+}
+
+.empRowSelected .empAvatar {
+  background: var(--accent-border);
+  color: var(--accent-dark);
 }
 
 .empInfo {
   display: flex;
   flex-direction: column;
   gap: 1px;
+  flex: 1;
+  min-width: 0;
 }
 
 .empName {
@@ -221,22 +402,24 @@
 .empDefault {
   font-size: 0.75rem;
   color: var(--text-3);
+  font-family: 'DM Mono', monospace;
 }
 
-/* ── Sticky Bar ─────────────────────────────────────────────────────────────── */
+/* ── Sticky Footer Bar ───────────────────────────────────────────────────── */
 .stickyBar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: white;
+  background: var(--surface);
   border-top: 1px solid var(--border);
   padding: 12px 20px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
   display: flex;
   align-items: center;
   gap: 12px;
-  z-index: 10;
-  box-shadow: 0 -4px 16px rgba(15,41,66,.08);
+  z-index: 50;
+  box-shadow: 0 -4px 20px rgba(26, 31, 46, .07);
 }
 
 .selectedCount {
@@ -246,7 +429,12 @@
   flex: 1;
 }
 
-/* ── Code List ──────────────────────────────────────────────────────────────── */
+.selectedCount strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* ── Code List ───────────────────────────────────────────────────────────── */
 .crewPills {
   display: flex;
   flex-wrap: wrap;
@@ -265,100 +453,148 @@
   gap: 12px;
   padding: 14px 16px;
   background: var(--surface);
-  border: 2px solid var(--border);
-  border-left: 5px solid var(--col);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--col, var(--accent));
   border-radius: var(--radius-sm);
   text-align: left;
   transition: all 0.12s;
 }
 
+.codeRow:hover {
+  box-shadow: var(--shadow-sm);
+  border-color: color-mix(in srgb, var(--col) 40%, var(--border));
+  border-left-color: var(--col);
+}
+
 .codeRow:active {
-  background: color-mix(in srgb, var(--col) 8%, white);
+  background: color-mix(in srgb, var(--col) 5%, white);
+  transform: scale(0.99);
 }
 
 .codeBadge {
   font-family: 'DM Mono', monospace;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--col);
-  background: color-mix(in srgb, var(--col) 12%, transparent);
-  padding: 2px 8px;
-  border-radius: 4px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--col, var(--accent));
+  background: color-mix(in srgb, var(--col, var(--accent)) 10%, transparent);
+  padding: 3px 9px;
+  border-radius: var(--radius-xs);
   flex-shrink: 0;
 }
 
 .codeDesc {
-  font-size: 0.9rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   color: var(--text);
   flex: 1;
 }
 
-.codeArrow {
+.codeRow i {
+  font-size: 0.75rem;
   color: var(--text-3);
-  font-size: 1rem;
+  flex-shrink: 0;
 }
 
-/* ── Code Banner ────────────────────────────────────────────────────────────── */
-.codeBanner {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  border-radius: var(--radius-sm);
-  color: white;
-}
-
-.bannerCode {
-  font-family: 'DM Mono', monospace;
-  font-weight: 500;
-  background: rgba(255,255,255,.2);
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-
-.bannerDesc {
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-/* ── Job List ──────────────────────────────────────────────────────────────── */
+/* ── Job List ────────────────────────────────────────────────────────────── */
 .jobList {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .jobRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 13px 16px;
-  background: white;
-  border: 2px solid var(--border);
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   text-align: left;
   transition: all 0.12s;
+  gap: 10px;
+}
+
+.jobRow:hover {
+  border-color: var(--text-3);
+  box-shadow: var(--shadow-xs);
 }
 
 .jobRowSelected {
-  border-color: var(--navy);
+  border-color: var(--accent);
+  background: var(--accent-tint);
 }
 
-.jobName { font-size: 0.9375rem; font-weight: 500; color: var(--text); }
-.jobNum { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-3); }
+.jobRowLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
 
-.skipRow {
+.jobIconWrap {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  flex-shrink: 0;
+  transition: all 0.12s;
+}
+
+.jobRow:hover .jobIconWrap,
+.jobRowSelected .jobIconWrap {
+  background: var(--accent-tint);
+  border-color: var(--accent-border);
+  color: var(--accent-dark);
+}
+
+.jobName {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.jobNum {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-3);
+  flex-shrink: 0;
+}
+
+.skipBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 12px 16px;
   background: none;
-  border: 2px dashed var(--border);
+  border: 1.5px dashed var(--border);
   border-radius: var(--radius-sm);
   color: var(--text-3);
   font-size: 0.875rem;
-  padding: 13px 16px;
-  text-align: left;
+  font-weight: 500;
+  transition: all 0.15s;
 }
 
-/* ── Hours ──────────────────────────────────────────────────────────────────── */
+.skipBtn:hover {
+  border-color: var(--text-3);
+  color: var(--text-2);
+}
+
+.skipBtn i {
+  font-size: 0.875rem;
+}
+
+/* ── Hours ───────────────────────────────────────────────────────────────── */
 .hoursRow {
   display: flex;
   gap: 8px;
@@ -366,60 +602,107 @@
 
 .hoursBtn {
   flex: 1;
-  padding: 12px 0;
+  padding: 13px 4px;
   background: var(--surface);
-  border: 2px solid var(--border);
+  border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-2);
+  transition: all 0.12s;
+  min-height: auto;
+}
+
+.hoursBtn:hover {
+  border-color: var(--text-3);
+  color: var(--text);
 }
 
 .hoursBtnActive {
-  background: var(--navy);
-  border-color: var(--navy);
+  background: var(--accent);
+  border-color: var(--accent);
   color: white;
+}
+
+.hoursCustom {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.customLabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.customLabel i {
+  font-size: 0.6875rem;
 }
 
 .hoursInput {
   font-family: 'DM Mono', monospace;
-  font-size: 1.125rem;
-  font-weight: 500;
-  padding: 11px 16px;
-  border: 2px solid var(--border);
+  font-size: 1.375rem;
+  font-weight: 600;
+  padding: 13px 16px;
+  border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
   width: 100%;
   color: var(--text);
-  background: white;
+  background: var(--surface);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-.hoursInput:focus { outline: none; border-color: var(--navy); }
+.hoursInput:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, .12);
+}
 
-/* ── Confirm Box ────────────────────────────────────────────────────────────── */
+/* ── Confirm Box ─────────────────────────────────────────────────────────── */
 .confirmBox {
   background: var(--surface);
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 .confirmTitle {
-  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   color: var(--text-3);
-  margin-bottom: 4px;
+  padding: 11px 16px;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--border-2);
+}
+
+.confirmTitle i {
+  font-size: 0.75rem;
 }
 
 .confirmRow {
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
+  align-items: center;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border-2);
+  font-size: 0.875rem;
   color: var(--text-2);
+  gap: 12px;
+}
+
+.confirmRow:last-child {
+  border-bottom: none;
 }
 
 .confirmRow strong {
@@ -429,103 +712,193 @@
   max-width: 60%;
 }
 
-/* ── Buttons ────────────────────────────────────────────────────────────────── */
-.btnPrimary {
-  padding: 15px;
-  background: var(--navy);
-  color: white;
-  font-size: 1rem;
-  font-weight: 700;
-  border-radius: var(--radius);
-  width: 100%;
+.confirmHours {
+  font-family: 'DM Mono', monospace;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: var(--accent-dark) !important;
 }
 
-.btnPrimary:disabled { opacity: 0.5; }
+/* ── Error ───────────────────────────────────────────────────────────────── */
+.errorRow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--danger);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: var(--danger-bg);
+  border: 1px solid #FECACA;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+}
 
-.btnSecondary {
-  padding: 13px;
+.errorRow i {
+  font-size: 0.9375rem;
+  flex-shrink: 0;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.submitBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: var(--accent);
+  color: white;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  border: none;
+  min-height: auto;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--accent-dark);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.submitBtn:disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.submitBtn i {
+  font-size: 0.9375rem;
+}
+
+.secondaryBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 20px;
   background: none;
-  border: 2px solid var(--border);
+  border: 1.5px solid var(--border);
   color: var(--text-2);
   font-size: 0.9375rem;
   font-weight: 600;
-  border-radius: var(--radius);
-  width: 100%;
+  border-radius: var(--radius-sm);
+  min-height: auto;
+  transition: all 0.15s;
 }
 
-/* ── Done ───────────────────────────────────────────────────────────────────── */
+.secondaryBtn:hover {
+  border-color: var(--text-3);
+  color: var(--text);
+}
+
+.secondaryBtn i {
+  font-size: 0.875rem;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, .4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Done ────────────────────────────────────────────────────────────────── */
 .doneBlock {
-  padding: 32px 20px;
+  padding: 36px 16px 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  max-width: 400px;
+  gap: 14px;
+  max-width: 480px;
   margin: 0 auto;
   width: 100%;
 }
 
-.doneIcon {
-  width: 64px;
-  height: 64px;
-  background: var(--success);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.75rem;
-  font-weight: 700;
+.doneIconWrap {
+  font-size: 3rem;
+  color: var(--success);
+  line-height: 1;
 }
 
 .doneTitle {
   font-size: 1.375rem;
   font-weight: 800;
-  color: var(--navy);
+  color: var(--text);
+  letter-spacing: -0.2px;
+}
+
+.doneSub {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  margin-top: -6px;
 }
 
 .doneSummary {
   width: 100%;
+  border: 2px solid;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
   background: var(--surface);
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  margin-top: 4px;
 }
 
-.doneLine {
+.doneSummaryRow {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-2);
+  gap: 12px;
 }
 
-.doneCodeBadge {
-  font-family: 'DM Mono', monospace;
-  color: white;
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding: 2px 10px;
-  border-radius: 4px;
+.doneSummaryRow:last-child {
+  border-bottom: none;
 }
 
-.doneCodeDesc {
+.doneSummaryLabel {
+  font-size: 0.8125rem;
+  color: var(--text-3);
+  font-weight: 500;
+}
+
+.doneSummaryVal {
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--text);
+  text-align: right;
 }
 
-.doneJob {
-  font-size: 0.875rem;
-  color: var(--text-2);
+.doneCodePill {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: white;
+  padding: 3px 10px;
+  border-radius: var(--radius-xs);
 }
 
-.doneHours {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--navy);
-  margin-top: 4px;
+.doneSummaryHours {
+  background: var(--bg);
+}
+
+.doneHoursVal {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
 }
 
 .doneNames {
@@ -535,30 +908,23 @@
   width: 100%;
 }
 
-/* ── Shared ─────────────────────────────────────────────────────────────────── */
+/* ── Name Pills ──────────────────────────────────────────────────────────── */
 .namePill {
-  background: color-mix(in srgb, var(--navy) 10%, white);
-  color: var(--navy);
+  background: var(--bg-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
   font-size: 0.8125rem;
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 4px 11px;
   border-radius: 99px;
 }
 
 .namePillMore {
-  background: var(--border);
-  color: var(--text-2);
+  background: var(--bg-2);
+  color: var(--text-3);
+  border: 1px solid var(--border);
   font-size: 0.8125rem;
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 4px 11px;
   border-radius: 99px;
-}
-
-.error {
-  color: var(--danger);
-  font-size: 0.875rem;
-  font-weight: 500;
-  padding: 10px 14px;
-  background: color-mix(in srgb, var(--danger) 10%, white);
-  border-radius: var(--radius-sm);
 }
